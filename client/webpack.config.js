@@ -1,54 +1,38 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const WebpackPwaManifest = require("webpack-pwa-manifest");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { GenerateSW } = require("workbox-webpack-plugin"); // Require the GenerateSW class of the WorkBoxPlugin
+//const WorkboxPlugin = require("workbox-webpack-plugin");
 const path = require("path");
-const { InjectManifest } = require("workbox-webpack-plugin");
-
-// TODO: Add and configure workbox plugins for a service worker and manifest file.
-// TODO: Add CSS loaders and babel to webpack.
 
 module.exports = {
   mode: "development",
-  entry: {
-    main: "./src/js/index.js",
-    install: "./src/js/install.js",
-  },
+  entry: "./src/js/index.js",
   output: {
-    filename: "[name].bundle.js",
+    filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
   },
+
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
-      chunks: ["main"],
+      template: "./index.html",
+      title: "Webpack Plugin",
     }),
-    new WebpackPwaManifest({
-      name: "Your App Name",
-      short_name: "Your App",
-      description: "Your app description",
-      background_color: "#ffffff",
-      theme_color: "#ffffff",
-      icons: [
-        {
-          src: path.resolve("src/assets/icon.png"),
-          sizes: [96, 128, 192, 256, 384, 512],
-          destination: path.join("icons"),
-        },
-      ],
-    }),
-    new InjectManifest({
-      swSrc: "./src/sw.js",
-      swDest: "service-worker.js",
-    }),
+    new MiniCssExtractPlugin(), //moves CSS into separate file
+    new GenerateSW(), //generates service worker
   ],
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
+      },
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
         use: {
           loader: "babel-loader",
           options: {
