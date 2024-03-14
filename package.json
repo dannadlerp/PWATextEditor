@@ -5,9 +5,9 @@
   "main": "node server.js",
   "scripts": {
     "start:dev": "",
-    "start": "node server.js",
+    "start": "npm run build && cd server && node server.js",
     "server": "",
-    "build": "",
+    "build": "cd client && npm run build",
     "install": "",
     "client": ""
   },
@@ -17,6 +17,7 @@
   "dependencies": {
     "cli": "^1.0.1",
     "express": "^4.17.1",
+    "idb": "^8.0.0",
     "if-env": "^1.0.4",
     "webpack": "^5.90.3"
   },
