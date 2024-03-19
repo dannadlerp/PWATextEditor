@@ -2,6 +2,8 @@ Github repo URL: https://github.com/dannadlerp/PWATextEditor
 
 Heroku Deployment URL: https://pwatexteditor01-d4ef03e6c4aa.herokuapp.com/
 
+![image](https://github.com/dannadlerp/PWATextEditor/assets/142226474/03b9bdfa-6da3-4d91-84ad-a67dcfae25fb)
+
 PWA Text Editor
 
 # Table of Contents
