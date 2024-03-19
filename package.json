@@ -6,10 +6,11 @@
   "scripts": {
     "start:dev": "webpack-dev-server --mode development --open",
     "start": "npm run build && cd server && node server.js",
-    "server": "",
+    "server": "cd server && nodemon server.js --ignore client", 
     "build": "cd client && npm run build",
-    "install": "",
-    "client": ""
+    "install": "cd server && npm i && cd ../client && npm i",
+    "client": "cd client && npm start",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false"
   },
   "keywords": [],
   "author": "",
