@@ -2,9 +2,9 @@
   "name": "jate",
   "version": "1.0.0",
   "description": "",
-  "main": "node server.js",
+  "main": "server.js",
   "scripts": {
-    "start:dev": "",
+    "start:dev": "webpack-dev-server --mode development --open",
     "start": "npm run build && cd server && node server.js",
     "server": "",
     "build": "cd client && npm run build",
