@@ -21,6 +21,7 @@ module.exports = () => {
       new HtmlWebpackPlugin({
         template: "./index.html",
         title: "jate",
+        favicon: "./favicon.ico", // Add this li
       }),
 
       // Injects our custom service worker
